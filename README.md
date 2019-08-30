@@ -8,7 +8,6 @@ fflush()
 **Si se completa correctamente devuelve 0 sino EOF o errno.
 */
 #include <stdio.h>
-
 int fflush(FILE *stream);
 
 fpurge() 
@@ -19,7 +18,6 @@ fpurge()
 **Si se completa correctamente devuelve 0 sino -1 o errno.
 */
 #include <stdio.h>
-
 int fpurge (ARCHIVO * flujo);
 
 __fpurge ()
@@ -31,16 +29,7 @@ No devuelve un valor.
 */
 #include <stdio.h>
 #include <stdio_ext.h>
-
 void  __fpurge(FILE *stream);
-
-
-
-
-
-
-
-
 
 
 
