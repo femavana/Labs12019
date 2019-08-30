@@ -23,11 +23,11 @@ Biblioteca Funciones:
  {
 int edad;
 int respuesta;
-int return;
+int ret;
 
 do{
 return = getInt(&edad,"¿Cual es tu edad?","Rango valido [0 - 100]",1,100);
-if(return == 0)
+if(ret == 0)
 {
 printf("La edad es: "%d",edad);
 }
