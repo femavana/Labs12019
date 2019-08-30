@@ -1,0 +1,59 @@
+
+Biblioteca Funciones:
+
+1.1Función getInt
+/**
+ * \brief Solicita un número al usuario y lo valida
+ * \param input Se carga el numero ingresado
+ * \param message Es el mensaje a ser mostrado
+ * \param eMessage Es el mensaje a ser mostrado en caso de error
+ * \param lowLimit Limite inferior a validar
+ * \param hiLimit Limite superior a validar
+ * \return Si es correcto se obtuvo el numero [0] sino  el [-1]
+ *
+ */
+ 
+ Ejemplo:
+ 
+ #biliotecas
+ 
+ int getInt(int* edad,char message[],char eMessage[], int lowLimit, int hiLimit);
+ 
+ int main()
+ {
+int edad;
+int respuesta;
+int return;
+
+do{
+return = getInt(&edad,"¿Cual es tu edad?","Rango valido [0 - 100]",1,100);
+if(return == 0)
+{
+printf("La edad es: "%d",edad);
+}
+printf("Desea continuar? S/N");
+scanf("%c",&respuesta);
+}while(respuesta != N);
+return 0;
+ }
+ 
+int getInt(int* edad,char message[],char eMessage[], int lowLimit, int hiLimit)
+{
+int i;
+int edad= *edad;
+int ret;
+
+printf("message[]");
+scanf("%d",&edad);
+if(edad <= loeLimit && edad >=hiLimit)
+{
+*edad=edad;
+ret=o;
+}
+else
+{
+printf("eMessage");
+ret=-1;
+}
+return ret;
+}
