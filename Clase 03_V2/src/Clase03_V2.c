@@ -10,22 +10,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 int calculoMaxYMin(int *flagFun,int numeroFun,int *MaxFun, int *MinFun);
-//int getNumero(int* pNumero);
+int getNumero(int* pNumero, int* rangoMax, int* rangoMin,int reintentos,char* mensaje, char* msjError);
 
 int main(void)
 {
 	int numero;
 	char respuesta;
-	int Max = 0;
-	int Min = 0;
+	int max = 0;
+	int min = 0;
 	int flag = 0;
 
 	do
 	{
 		printf("\nIngrese un numero");
 		scanf("%d",&numero);
-		//getNumero(&numero,&intentos);
-		calculoMaxYMin(&flag,numero,&Max,&Min);
+		getNumero(&numero,&intentos);
+		calculoMaxYMin(&flag,numero,&max,&min);
 		printf("\nDesea continuar? s/n");
 		_fpurge(stdin);
 		scanf("%c",&respuesta);
