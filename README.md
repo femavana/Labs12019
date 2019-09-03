@@ -31,6 +31,18 @@ No devuelve un valor.
 #include <stdio_ext.h>
 void  __fpurge(FILE *stream);
 
+System()
+/**
+comandos que corren por sh 
+*/
+#include <stdio.h>
+Linux: System ("clear"); // Windows: System("cls"); (Limpia la pantalla)
+Linux: System (); // Windows: System("pause"); (pausa )
+
+
+
+
+
 
 
 Fuentes:
