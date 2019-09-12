@@ -8,13 +8,14 @@
 #include <stdio.h>
 #include <stdio_ext.h>
 #include <stdlib.h>
-#include "funciones.h"
+#include "get_Input.h"
+#include "arrays.h"
 #define  CANT 4
 
 
-int initArray(int* pArray, int limite,int valor)
+int initArray(int *pArray,int limite,int valor)
 {
-	int retorno = -1;
+	int ret=-1;
 	int i;
 	if(pArray != NULL && limite > 0)
 	{
@@ -22,41 +23,24 @@ int initArray(int* pArray, int limite,int valor)
 		{
 			pArray[i]=valor;
 		}
+		ret=0;
 	}
-return retorno;
+return ret;
 }
 
-int initArrayInt(int *pArray, int limite,int valor)
+int printArray(int *pArray,int limite)
 {
-	int retorno = -1;
+	int ret=-1;
 	int i;
-	if(pArray != NULL && limite > 0)
-	{
-		for(i=0;i<limite;i++)
-		{
-			pArray[i]=valor;
-		}
-		retorno = 0;
-	}
-	return retorno;
-}
-
-
-
-int printArrayInt(int *pArray ,int limite)
-{
-	int retorno = -1;
-	int i;
-	printf("\nDEBUG\n");
 	if(pArray != NULL && limite > 0)
 	{
 		for(i=0;i<limite;i++)
 		{
 			printf("\n\t%d",pArray[i]);
 		}
-		retorno = 0;
+		ret=0;
 	}
-	return retorno;
+return ret;
 }
 
 int getArrayInt(	int *pArray,
@@ -67,16 +51,14 @@ int getArrayInt(	int *pArray,
 					int maximo,
 					int reintentos)
 {
-	int retorno = -1;
+	int ret=-1;
 	int buffer;
-	int i=0;
+	int i;
 	char respuesta;
-	printf("\nDEBUG\n");
 	if(pArray != NULL && limite > 0)
 	{
 		do
 		{
-
 			if(	getInt(	&buffer,
 						pMensaje,
 						pMensajeError,
@@ -84,163 +66,145 @@ int getArrayInt(	int *pArray,
 						maximo,
 						reintentos) == 0)
 			{
-				pArray[i] = buffer;
+				pArray[i]=buffer;
 				i++;
 				if(i == limite)
 				{
 					break;
 				}
 			}
-
 			printf("Continuar (s/n)? \n");
 			__fpurge(stdin); // fflush(stdin)
 			scanf("%c",&respuesta);
 		}while(respuesta != 'n');
-		retorno = i;
+		ret=0;
 	}
-	return retorno;
-}
-
-int getInt(	int *pResultado,
-			char *pMensaje,
-			char *pMensajeError,
-			int minimo,
-			int maximo,
-			int reintentos)
-{
-	int retorno = -1;
-	int buffer;
-	do
-	{
-		printf("%s",pMensaje);
-		__fpurge(stdin);
-		if(scanf("%d",&buffer)==1 && buffer >= minimo && buffer <= maximo)
-		{
-			*pResultado = buffer;
-			retorno = 0;
-			break;
-		}
-		printf("%s",pMensajeError);
-		reintentos--;
-	}while(reintentos >= 0);
-	return retorno;
+	return ret;
 }
 
 int minimoArrayInt(int *pArray,int limite,int *pMin)
 {
-
+	int ret=-1;
+	int buffer;
 	int i;
-	int aux;
 
 	if(pArray != NULL && limite > 0 )
 	{
-				 aux = pArray[0];
+				 buffer= pArray[0];
 	        for(i=1;i<limite;i++)
 	        {
-				if(pArray[i] > aux)
+				if(pArray[i] > buffer)
 				{
-				  *pMin = aux;
+				  *pMin=buffer;
 				}
 			}
+	        ret=0;
 	}
-return 0;
+return ret;
 }
 
-int maximoArrayInt(int pArray[],int limite,int *pMax)
+int maximoArrayInt(int *pArray,int limite,int *pMax)
 {
+	int ret=-1;
+	int buffer;
 	int i;
-	int aux;
 
 	if(pArray != NULL && limite > 0 )
 	{
-				 aux = pArray[0];
+				 buffer= pArray[0];
 	        for(i=1;i<limite;i++)
 	        {
-				if(pArray[i] < aux)
+				if(pArray[i] < buffer)
 				{
-				  *pMax = aux;
+				  *pMax=buffer;
 				}
 			}
+	        ret=0;
 	}
-return 0;
+return ret;
 }
 
 int promedioArrayInt(int *pArray,int limite,int *promedio)
 {
+	int ret=-1;
+	int buffer=0;
 	int i;
-	int acumulador=0;
 
 		if(pArray != NULL && limite > 0 )
 		{
 		        for(i=0;i<limite;i++)
 		        {
-					acumulador = acumulador + pArray[i];
+					buffer=buffer+pArray[i];
 				}
-		  *promedio= acumulador / limite;
+		  *promedio=buffer/limite;
 		}
-return 0;
+		ret=0;
+return ret;
 }
 
-int sumaArrayInt(int *pArray,int limite,int *suma)
+int sumaArrayInt(int *pArray,int limite,int  *suma)
 {
+	int ret=-1;
+	int buffer=0;
 	int i;
-	int acumulador=0;
 
 			if(pArray != NULL && limite > 0 )
 			{
 			 for(i=0;i<limite;i++)
 			  {
-				*suma= acumulador + pArray[i];
+				*suma=buffer+pArray[i];
 			  }
 			}
-return 0;
+			ret=0;
+return ret;
 }
 int cargarSetDatos(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,int* aNota2P, float* aPromedio,int limite)
 {
+	int ret=-1;
     int i;
     int buffer;
+
     for (i=0; i<limite; i++)
     {
-        //printf("Ingrese el legajo del alumno: ");
-        //scanf("%d", &aLegajo[i]);
-        if(getInt(&buffer, "+Ingrese el legajo del alumno: ", "Error. ", 1, 100, 2) == 0)
+        if(getInt(&buffer,"\nIngrese el legajo del alumno: ","Error",1,100,2) == 0)
         {
                 aLegajo[i]=buffer;
-        }else
-            {
+        }
+        else
+        {
                 aLegajo[i]=0;
-            }
-        printf("Ingrese el sexo del alumno: ");
+        }
+        printf("\nIngrese el sexo del alumno: ");
         fflush(stdin);
         scanf("%c",&aSexo[i]);
-        printf("Ingrese la edad del alumno: ");
+        printf("\nIngrese la edad del alumno: ");
         scanf("%d", &aEdad[i]);
-        printf("Ingrese la nota 1er Parcial del alumno: ");
+        printf("\nIngrese la nota 1er Parcial del alumno: ");
         scanf("%d", &aNota1P[i]);
-        printf("Ingrese la nota 2do Parcial del alumno: ");
+        printf("\nIngrese la nota 2do Parcial del alumno: ");
         scanf("%d", &aNota2P[i]);
         aPromedio[i] = (((float)aNota1P[i]+aNota2P[i])/2);
+        ret=0;
        }
-    return 0;
+    return ret;
 }
-int mostrarEstudiante(int aLegajo, char aSexo, int aEdad, int aNota1P,int aNota2P, float aPromedio)
+
+void printString(int aLegajo, char aSexo,int aEdad,int aNota1P,int aNota2P, float aPromedio)
 {
     printf("\n%d        %c     %d       %d         %d           %.2f", aLegajo, aSexo, aEdad, aNota1P, aNota2P, aPromedio);
-
-    return 0;
 }
-int mostrarEstudiantes(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,int* aNota2P, float* aPromedio,int limite)
+
+void mostrarEstudiantes(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,int* aNota2P, float* aPromedio,int limite)
 {
     int i;
     printf("\nlegajo    sexo   edad   nota1P     nota2P    promedio");
     for (i=0; i<limite; i++)
     {
-        mostrarEstudiante(aLegajo[i], aSexo[i], aEdad[i], aNota1P[i], aNota2P[i], aPromedio[i]);
+        printString(aLegajo[i], aSexo[i], aEdad[i], aNota1P[i], aNota2P[i], aPromedio[i]);
     }
-
-    return 0;
 }
-int ordenarLegajoEstudiantes(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,int* aNota2P, float* aPromedio,int limite)
+
+void ordenarString(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,int* aNota2P, float* aPromedio,int limite)
 {
     int i;
     int aux;
@@ -283,6 +247,4 @@ int ordenarLegajoEstudiantes(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,i
             }
         }
     }
-
-    return 0;
 }

@@ -1,3 +1,5 @@
-src/Clase_06.o: ../src/Clase_06.c ../src/funciones.h
+src/Clase_06.o: ../src/Clase_06.c ../src/get_Input.h ../src/arrays.h
 
-../src/funciones.h:
+../src/get_Input.h:
+
+../src/arrays.h:

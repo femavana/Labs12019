@@ -5,15 +5,18 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../src/Clase_06.c \
-../src/funciones.c 
+../src/arrays.c \
+../src/get_Input.c 
 
 OBJS += \
 ./src/Clase_06.o \
-./src/funciones.o 
+./src/arrays.o \
+./src/get_Input.o 
 
 C_DEPS += \
 ./src/Clase_06.d \
-./src/funciones.d 
+./src/arrays.d \
+./src/get_Input.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
