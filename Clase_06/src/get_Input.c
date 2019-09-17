@@ -154,4 +154,28 @@ OnlyNumbers(int aux)
 {
 
 }
+void menu()
+{
+	printf("<>>>>>>PHONEBOOK<<<<<<>");
+	printf("\n1-New user");
+	printf("\n2-Delete user");
+	printf("\n3-Change user");
+	printf("\n4-List users:");
+	printf("\n5-Order users by LastName:");
+	printf("\n6-Exit:");
+}
+int searchFirstOccurrence(int array[], int limite,int valor)
+{
+ int i;
+ int ret=-1;
+ 
+ for(i=0;i<limite;i++)
+ 		{
+ 			if(array[i]== valor)
+ 			{
+ 				ret=i;
+ 			}
+ 		}
+return ret;
+}
 
