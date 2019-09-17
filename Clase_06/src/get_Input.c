@@ -103,6 +103,7 @@ int getString( char message[],
 {
 	printf("message");
 	scanf("%s", input);
+return 0;
 }
 	
 //5
