@@ -7,7 +7,8 @@
 
 #include <stdio.h>
 #include <stdio_ext.h>
-#include <stdlib.h>
+#include <stdlib.h
+#include <string.h>
 #include "get_Input.h"
 #include "arrays.h"
 #define  CANT 4
@@ -96,3 +97,61 @@ int getChar( char *pResultado,
 	}while(reintentos >= 0);
 	return ret;
 }
+//4
+int getString( char message[],
+	       char input[])
+{
+	printf("message");
+	scanf("%s", input);
+}
+	
+//5
+int getStringNumbers( char message[],
+		      int  input[])
+{
+	int ret=0;
+	char aux[256];
+	getString(message,aux);
+	if(onlyNumbers(aux)==0)
+	{
+	  strcpy(input,aux);
+	  ret=1;
+	}
+return ret;
+}
+
+//6
+int getStringLetters(char message[],
+		     char input[])
+{
+int ret=0;
+char aux[256];
+	getString(message,aux);
+	if(onlyLetters(aux)==0)
+	{
+	  strcpy(input,aux);
+		ret=1;
+	}
+return ret;
+}
+//validations
+
+OnlyLetters(char aux[],
+            int limite)
+{
+int ret=0;
+char aux[256];
+	getString(message,aux);
+	for(i=0;i<limite;i++)
+	{
+         
+		ret=1;
+	}
+return ret;
+}
+
+OnlyNumbers(int aux)
+{
+
+}
+
