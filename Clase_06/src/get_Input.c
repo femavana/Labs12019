@@ -137,24 +137,36 @@ return ret;
 }
 //validations
 
-OnlyLetters(char aux[],
-            int limite)
+int OnlyLetters(char aux[])
 {
-int ret=0;
-char aux[256];
-	getString(message,aux);
-	for(i=0;i<limite;i++)
-	{
-         
-		ret=1;
-	}
+int ret=-1;
+int i=0;
+while(aux[i]!= '\0')
+{
+if((aux[i] != ' ') && (aux[i] < 'a' || aux[i] > 'z') && (aux[i] < 'A' || aux[i] > 'Z'))
+{
+	ret=0;
+	i++;
+}
+}
 return ret;
 }
 
-OnlyNumbers(int aux)
+int OnlyNumbers(char aux[])
 {
-
+int ret=-1;
+int i=0;
+while(aux[i]!= '\0')
+{
+if(aux[i]<'0'|| aux[i] > '9')
+{
+	ret=0;
+	i++;
 }
+}
+return ret;
+}
+
 void menu()
 {
 	printf("<>>>>>>PHONEBOOK<<<<<<>");
@@ -165,6 +177,8 @@ void menu()
 	printf("\n5-Order users by LastName:");
 	printf("\n6-Exit:");
 }
+
+
 int searchFirstOccurrence(int array[], int limite,int valor)
 {
  int i;
