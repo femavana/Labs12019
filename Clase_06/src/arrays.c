@@ -90,10 +90,10 @@ int minimoArrayInt(int *pArray,int limite,int *pMin)
 
 	if(pArray != NULL && limite > 0 )
 	{
-				 buffer= pArray[0];
+	        buffer= pArray[0];
 	        for(i=1;i<limite;i++)
 	        {
-				if(pArray[i] > buffer)
+				if(pArray[i] < buffer)
 				{
 				  *pMin=buffer;
 				}
@@ -114,7 +114,7 @@ int maximoArrayInt(int *pArray,int limite,int *pMax)
 				 buffer= pArray[0];
 	        for(i=1;i<limite;i++)
 	        {
-				if(pArray[i] < buffer)
+				if(pArray[i] > buffer)
 				{
 				  *pMax=buffer;
 				}
@@ -134,11 +134,11 @@ int promedioArrayInt(int *pArray,int limite,int *promedio)
 		{
 		        for(i=0;i<limite;i++)
 		        {
-					buffer=buffer+pArray[i];
-				}
+			  buffer=buffer+pArray[i];
+			}
 		  *promedio=buffer/limite;
+		ret=0;	
 		}
-		ret=0;
 return ret;
 }
 
@@ -152,12 +152,13 @@ int sumaArrayInt(int *pArray,int limite,int  *suma)
 			{
 			 for(i=0;i<limite;i++)
 			  {
-				*suma=buffer+pArray[i];
+			    *suma=buffer+pArray[i];
 			  }
-			}
 			ret=0;
+			}	
 return ret;
 }
+
 int cargarSetDatos(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,int* aNota2P, float* aPromedio,int limite)
 {
 	int ret=-1;
