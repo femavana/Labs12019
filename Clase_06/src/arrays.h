@@ -8,6 +8,7 @@
 #ifndef ARRAYS_H_
 #define ARRAYS_H_
 
+//Array
 int initArray(int* pArray, int limite,int valor);
 int initArrayInt(int *pArray , int limite, int valor);
 int printArrayInt(int *pArray , int limite);
@@ -23,10 +24,12 @@ int maximoArrayInt(int *pArray,int limite,int *pMax);
 int minimoArrayInt(int *pArray,int limite,int *pMin);
 int promedioArrayInt(int *pArray,int limite,int *promedio);
 int sumaArrayInt(int *pArray,int limite,int *suma);
+//String
 int cargarSetDatos(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,int* aNota2P, float* aPromedio,int limite);
 void printString(int aLegajo, char aSexo, int aEdad, int aNota1P,int aNota2P, float aPromedio);
 void mostrarEstudiantes(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,int* aNota2P, float* aPromedio,int limite);
 void ordenarString(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,int* aNota2P, float* aPromedio,int limite);
+//Struct
 void initArrayStruct(Persona arrayPersona[], int limite, int valor);
 int searchFirstOccurrenceStruct(Persona arrayPersona[], int limite,int valor);
 void printArrayStruct(Persona arrayPersona[] ,int limite);
