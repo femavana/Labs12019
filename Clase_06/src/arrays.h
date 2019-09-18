@@ -27,5 +27,9 @@ int cargarSetDatos(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,int* aNota2
 void printString(int aLegajo, char aSexo, int aEdad, int aNota1P,int aNota2P, float aPromedio);
 void mostrarEstudiantes(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,int* aNota2P, float* aPromedio,int limite);
 void ordenarString(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,int* aNota2P, float* aPromedio,int limite);
+void initArrayStruct(Persona arrayPersona[], int limite, int valor);
+int searchFirstOccurrenceStruct(Persona arrayPersona[], int limite,int valor);
+void printArrayStruct(Persona arrayPersona[] ,int limite);
+void orderArrayStruct(Persona arrayPersona[] ,int limite);
 
 #endif /* ARRAYS_H_ */
