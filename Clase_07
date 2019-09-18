@@ -1,0 +1,118 @@
+/*
+ ============================================================================
+ Name        : AgendaTelefonica.c
+ Author      : Navarro María Fernanda
+ Version     :
+ Copyright   : Original Code
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+Realizar una agenda para guardar los datos de hasta 200 personas de las cuales se toman los siguientes datos:
+
+Nombre
+Apellido
+Legajo (NO SE PUEDE REPETIR)
+a- Realizar un programa con un menú de opciones para hacer altas , bajas y modificaciones (ABM) de una agenda.
+b- Mostrar un listado ordenado por Apellido
+
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "funciones.h"
+#define QUANTITY 200
+
+
+int main(void)
+{
+	Persona arrayPersona[QUANTITY];
+    char auxLastName[50];
+    char auxName[50];
+    char auxEmployeedFile[50];
+    int  auxiliar;
+    int resultSerch;
+    int option;
+    int freePlace;
+
+    initArrayStruct(arrayPersona,QUANTITY,-1);
+    do
+    {
+	menu();
+	getInt(&option,"Choose an option","ERROR",1,6,3);
+
+	switch(option)
+	{
+	case 1:
+		printf("\n\t<<New User>>");
+		freePlace = searchFirstOccurrenceStruct(arrayPersona,QUANTITY,-1);
+		if(freePlace != -1)
+		{
+		    getStringLetters("\nIngrese el nombre del usuario: ","\nError.Ingrese solo letras",auxName);
+            getStringLetters("\nIngrese el apellido del usuario: ","\nError.Ingrese solo letras",auxLastName);
+			getStringNumbers( "\nIngrese el legajo del usuario: ","\nError.Ingrese solo numeros",auxEmployeedFile);
+			auxiliar=atoi(auxEmployeedFile);
+		    if(searchFirstOccurrenceStruct(arrayPersona,QUANTITY,-1)!= -1)
+		    {
+		    	printf("\n\tEl legajo ingresado ya existe!!!");
+		    	break;
+		    }
+		   strcpy(arrayPersona[freePlace].name,auxName);
+		   strcpy(arrayPersona[freePlace].lastName,auxLastName);
+		   arrayPersona[freePlace].employeedFile=auxiliar;
+
+		   break;
+		}
+		else
+		{
+			printf("\n\tNo more free place");
+			break;
+		}
+		break;
+	case 2:
+		printf("\n\t<<Delete User>>");
+		getStringNumbers( "\nIngrese el legajo del usuario: ","\nError.Ingrese solo numeros",auxEmployeedFile);
+		resultSerch=searchFirstOccurrenceStruct(arrayPersona,QUANTITY,-1);
+		if(resultSerch != -1)
+		{
+			arrayPersona[resultSerch].employeedFile =-1;
+			break;
+		}
+		else
+		{
+			printf("No se encuentra el legajo ingresado");
+			break;
+		}
+		break;
+	case 3:
+		        printf("\n\t<<Change User>>");
+		        getStringNumbers( "\nIngrese el legajo del usuario: ","\nError.Ingrese solo numeros",auxEmployeedFile);
+				resultSerch=searchFirstOccurrenceStruct(arrayPersona,QUANTITY,-1);
+				if(resultSerch != -1)
+				{
+					getStringLetters("\nIngrese el nombre del usuario: ","\nError.Ingrese solo letras",auxName);
+					getStringLetters("\nIngrese el apellido del usuario: ","\nError.Ingrese solo letras",auxLastName);
+					strcpy(arrayPersona[resultSerch].name,auxName);
+				    strcpy(arrayPersona[resultSerch].lastName,auxLastName);
+				    break;
+				}
+				else
+				{
+					printf("No se encuentra el legajo ingresado");
+					break;
+				}
+				break;
+			break;
+	case 4:
+		    printf("\n\t<<List Users>>");
+		    printArrayStruct(arrayPersona,QUANTITY);
+		    break;
+	case 5:
+		    printf("\n\t<<List Users by LastName>>");
+		    orderArrayStruct(arrayPersona,QUANTITY);
+		    printArrayStruct(arrayPersona,QUANTITY);
+			break;
+	   }
+}while(option!=6);
+	return EXIT_SUCCESS;
+}
+
