@@ -249,3 +249,70 @@ void ordenarString(int* aLegajo, char* aSexo,int* aEdad,int* aNota1P,int* aNota2
         }
     }
 }
+//Struct
+//Struct1
+void initArrayStruct(Persona arrayPersona[], int limite, int valor)
+{
+ int i;
+ for(i=0;i<limite;i++)
+ {
+	 arrayPersona[i].employeedFile=valor;
+ }
+}
+//struct2
+int searchFirstOccurrenceStruct(Persona arrayPersona[], int limite,int valor)
+{
+ int i;
+ int ret=-1;
+
+ for(i=0;i<limite;i++)
+ {
+ 	if(arrayPersona[i].employeedFile == valor)
+ 	{
+ 	  ret=i;
+ 	}
+ }
+return ret;
+}
+
+//struct3
+void printArrayStruct(Persona arrayPersona[] ,int limite)
+{
+	int i;
+
+		for(i=0;i<limite;i++)
+		{
+			if(arrayPersona[i].employeedFile != 1)
+		    {
+			printf("\n\t%s--%s--%d",arrayPersona[i].name,arrayPersona[i].lastName,arrayPersona[i].employeedFile);
+		    }
+		}
+}
+
+//struct4
+void orderArrayStruct(Persona arrayPersona[] ,int limite)
+{
+	int i,j;
+	char auxiliar[];
+
+			for(i=0;i<limite;i++)
+			{
+				if(arrayPersona[i].employeedFile != 1)
+			    {
+					continue;
+			    }
+				for(j=i+1;j<limite;j++)
+				{
+					if(arrayPersona[j].employeedFile != 1)
+								    {
+										continue;
+								    }
+					if(strcmp(arrayPersona[i].lastName,arrayPersona[j].lastName)>0)
+					{
+						auxiliar=arrayPersona[j];
+						arrayPersona[j]=arrayPersona[i];
+						arrayPersona[i]=auxiliar;
+					}
+				}
+			}
+}
