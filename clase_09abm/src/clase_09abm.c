@@ -47,7 +47,7 @@ int main(void)
     printf("\n");
     printf("\n");
 	menu();
-	getInt(&option,"\nElige una opcion: ","\nERROR",1,6,3);
+	getInt(&option,"\nIngrese una opcion: ","\nERROR",1,6,3);
 
 	switch(option)
 	{
@@ -111,11 +111,11 @@ int alta(Persona arrayPersona[],int lugarLibre)
 	if(lugarLibre == 0)
 	{
 	printf("Ingrese el nombre:");
-	fgets(arrayPersona[lugarLibre].nombre,sizeof(arrayPersona[lugarLibre].nombre),stdin);
+	fgets(arrayPersona[lugarLibre].nombre,sizeof(arrayPersona.nombre),stdin);
 	printf("Ingrese la edad :");
-	fgets(arrayPersona[lugarLibre].edad,sizeof(arrayPersona[lugarLibre].edad),stdin);
+	fgets(arrayPersona[lugarLibre].edad,sizeof(arrayPersona.edad),stdin);
 	printf("Ingrese el dni:");
-	fgets(arrayPersona[lugarLibre].dni,sizeof(arrayPersona[lugarLibre].dni),stdin);
+	fgets(arrayPersona[lugarLibre].dni,sizeof(arrayPersona.dni),stdin);
 	arrayPersona[lugarLibre].isEmpty =1;
     }
 	else
