@@ -9,29 +9,13 @@
 #include <stdio_ext.h>
 #include <stdlib.h>
 #include <string.h>
-#include "funciones.h"
+#include "abm.h"
+#include "getInput.h"
 #define   LCD 1
 #define   LED 2
 #define   FALSE 1
 #define   TRUE  0
 #define   CANT 10
-
-//validations
-
-int onlyTextStr(char* aux)
-{
-int ret=0;
-int i;
-
-for(i=0;i<'\0';i++)
-{
-if((aux[i] != ' ') && (aux[i] < 'a' || aux[i] > 'z') && (aux[i] < 'A' || aux[i] > 'Z'))
-{
-	ret=-1;
-}
-}
-return ret;
-}
 
 void menu()
 {
@@ -46,120 +30,8 @@ void menu()
 	printf("\n8-Listar contrataciones:");
 	printf("\n9-Listar pantallas:");
 	printf("\n10-Informar:");
+	printf("\n11-Salir:");
 	printf("\n\t<>>>>>><<<<<<>");
-}
-
-int getFloat(float *pResultado,
-			 char* mensaje,
-			 char* msjError,
-			 int minimo,
-			 int maximo,
-			 int reintentos)
-{
-    int ret = -1;
-	float buffer;
-	do
-	{
-		printf("%s",mensaje);
-		__fpurge(stdin);
-		scanf("%f",&buffer);
-		if(buffer >= minimo && buffer <= maximo)
-		{
-			*pResultado=buffer;
-			ret = 0;
-			break;
-		}
-		else
-		{
-		printf("\t%s",msjError);
-		reintentos--;
-		}
-	}while(reintentos >= 0);
-	return ret;
-}
-
-
-int getString(char* input,
-		      char* message,
-			  char* msgError,
-			  int   minSize,
-			  int   maxSize,
-			  int   retries)
-{
-    int ret=-1;
-    char bufferStr[maxSize];
-    int size;
-     do{
-        	printf("%s",message);
-        	fgets(bufferStr,sizeof(bufferStr),stdin);
-        	size=strlen(bufferStr)-1;
-        	if(size>=minSize && size<maxSize)
-        	{    strcpy(input,bufferStr);
-        	     ret=0;
-        	     break;
-        	}
-        	else
-        	{
-        	     printf("%s",msgError);
-        	     retries--;
-        	     break;
-        	}
-     }while(retries>=0);
-    return ret;
-}
-
-int getStrChar(char* input,
-		      char* message,
-		      char* msgError,
-		      int minSize,
-		      int maxSize,
-		      int retries)
-{
-    int ret=-1;
-    char bufferStr[maxSize];
-
-    do{
-    if(getString(bufferStr,message,msgError,minSize,maxSize,retries)==0)
-            {
-                if(onlyTextStr(bufferStr)==0)
-                {
-                    strcpy(input,bufferStr);
-                    ret=0;
-                    break;
-                }
-                else
-                {
-                    printf("%s",msgError);
-                    retries--;
-                }
-            }
-        }while(retries>=0);
-  return ret;
-}
-
-int getInt(	int *pResultado,
-			char* mensaje,
-			char* mensajeError,
-			int minimo,
-			int maximo,
-			int reintentos)
-{
-	int ret=-1;
-	int buffer;
-	do
-	{
-		printf("%s",mensaje);
-		__fpurge(stdin);
-		if(scanf("%d",&buffer)==1 && buffer >= minimo && buffer <= maximo)
-		{
-			*pResultado=buffer;
-			ret=0;
-			break;
-		}
-		printf("%s", mensajeError);
-		reintentos--;
-	}while(reintentos >= 0);
-	return ret;
 }
 
 int iniciarPantallas(ePantalla* pantallas, int size, int valor)
@@ -179,7 +51,7 @@ int iniciarPantallas(ePantalla* pantallas, int size, int valor)
 
 
 
-int freeSpacePantalla(ePantalla* pantallas, int size,int valor)
+int freeSpacePantalla(ePantalla* pantallas, int size,int valor,int* freePosition)
 {
  int i;
  int ret=-1;
@@ -190,7 +62,8 @@ int freeSpacePantalla(ePantalla* pantallas, int size,int valor)
  {
  	if(pantallas[i].isEmpty == valor)
  	{
- 	  ret=i;
+ 	  ret=0;
+ 	 *freePosition=i;
  	}
  	else
  	{
@@ -201,7 +74,7 @@ int freeSpacePantalla(ePantalla* pantallas, int size,int valor)
  return ret;
 }
 
-int altaPantalla(ePantalla* pantallas,int size,int value)
+int altaPantalla(ePantalla* pantallas,int size,int value,int* idPantalla)
 {
 int ret=-1;
 int freePosition;
@@ -212,19 +85,21 @@ char direccion[50];
 
 if(pantallas!= NULL && size > 0 )
 {
-   freePosition=freeSpacePantalla(pantallas,size,value);
+   freeSpacePantalla(pantallas,size,value,&freePosition);
    if(freePosition!=-1)
    {
-	pantallas[freePosition].idPantalla++;
-	getFloat(&dayPrice,"\nIngrese el precio por dia de la pantalla: ","\nError!!.Ingrese solo numeros",100,1000,2);
-	getInt(&tipe,"\nIngrese el tipo de pantalla:  ","\nError!!.Ingrese solo: LCD-1 y LED-2 ",1,2,2);
-	getStrChar(direccion,"\nIngrese la direccion de la pantalla: ","\nError!!.",6,50,2);
-	getStrChar(name,"\nIngrese el nombre de la pantalla","\nError!!.Ingrese solo letras",3,20,2);
+	(*idPantalla)++;
+	getFloat(&dayPrice,"\nIngrese el precio por dia de la pantalla: \n","\nError!!.Ingrese solo numeros",100,1000,2);
+	getInt(&tipe,"Ingrese el numero del tipo de pantalla 1-LCD 2-LED: \n","\nError!!.Ingrese solo 1 o 2 ",1,2,2);
+	getString(direccion,"Ingrese la direccion de la pantalla: \n","\nError!!",6,50,2);
+	getString(name,"Ingrese el nombre de la pantalla: \n","\nError!!",3,20,2);
     pantallas[freePosition].precioDia=dayPrice;
 	pantallas[freePosition].tipo=tipe;
+	pantallas[freePosition].idPantalla=*idPantalla;
 	strcpy(pantallas[freePosition].nombre,name);
 	strcpy(pantallas[freePosition].direccion,direccion);
     pantallas[freePosition].isEmpty=FALSE;
+
 		  ret=0;
    }
 	else
@@ -235,7 +110,78 @@ if(pantallas!= NULL && size > 0 )
 return ret;
 }
 
+int printPantallas(ePantalla* pantallas,int size,int value)
+{
+	int ret=-1;
+	int i;
 
+	if(pantallas!= NULL && size > 0 )
+	{
+		printf("\n");
+
+		for(i=0;i<size;i++)
+		{
+			if(pantallas[i].isEmpty==value)
+			{
+		    printf("\n___|ID___|Nombre____|Direccion___|Tipo__|Precio_por_dia__|");
+			printf("%d\t%s\t%s\t%d\t%.2f",pantallas[i].idPantalla,pantallas[i].nombre,pantallas[i].direccion,pantallas[i].tipo,pantallas[i].precioDia);
+			}
+        }
+		ret=0;
+	}
+return ret;
+}
+
+int buscarIDPantalla(ePantalla* pantallas,int size,int value, int id,int* posicion)
+{
+    int ret=-1;
+    int i;
+
+    if(pantallas!= NULL && size>=0)
+    {
+        for(i=0;i<size;i++)
+        {
+            if(pantallas[i].isEmpty==0)
+                continue;
+            else if(pantallas[i].idPantalla==id)
+            {
+                ret=0;
+                *posicion=i;
+                break;
+            }
+        }
+    }
+    return ret;
+}
+
+int bajaPantalla(ePantalla* pantallas, int size)
+{
+    int ret=-1;
+    int posicion;
+    int id;
+    if(pantallas!=NULL && size>0)
+    {
+    	printPantallas(pantallas,CANT,1);
+    	getInt(&id,"\n\nIngrese el ID a dar de baja: ","\nERROR.",1,size,2);
+
+        if(buscarIDPantalla(pantallas,size,0,id,&posicion)==0)
+        {
+            pantallas[posicion].isEmpty=0;
+            pantallas[posicion].idPantalla=0;
+            pantallas[posicion].tipo=0;
+            pantallas[posicion].precioDia=0;
+            strcpy(pantallas[posicion].direccion,"");
+            strcpy(pantallas[posicion].nombre,"");
+            ret=0;
+            printf("\tLa baja fue exitosa!!");
+        }
+        else
+        {
+        	printf("\nNo existe el ID ingresado");
+        }
+    }
+    return ret;
+}
 
 /*
 int initPublicidad(ePublicidad publicacion, int size, int valor)

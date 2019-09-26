@@ -5,8 +5,8 @@
  *      Author: femavana
  */
 
-#ifndef FUNCIONES_H_
-#define FUNCIONES_H_
+#ifndef ABM_H_
+#define ABM_H_
 
 typedef struct{
 	int idPantalla;
@@ -57,8 +57,12 @@ int onlyLetters(char* aux);
 int onlyNumbers(char* aux);
 void menu();
 int iniciarPantallas(ePantalla* pantallas, int size, int valor);
-int freeSpacePantalla(ePantalla* pantallas, int size,int valor);
-int altaPantalla(ePantalla* pantallas,int size,int value);
+int freeSpacePantalla(ePantalla* pantallas, int size,int valor,int* freePosition);
+int altaPantalla(ePantalla* pantallas,int size,int value,int* idPantalla);
+int printPantallas(ePantalla* pantallas,int size,int value);
+int buscarIDPantalla(ePantalla* pantallas,int size,int value, int id,int* posicion);;
+int bajaPantalla(ePantalla* pantallas, int size);
+
 /*
 int alta(ePublicidad publicacion,int lugarLibre);
 void printArrayStruct(ePublicidad publicacion, ,int size);
@@ -66,4 +70,4 @@ int searchPantalla(ePublicidad publicacion, int size,int valor);
 int searchPublicidad(ePantalla pantallas, int size,int valor);
 int initPublicacion(ePublicidad publicacion, int size, int valor);
 */
-#endif /* FUNCIONES_H_ */
+#endif /* ABM_H_ */

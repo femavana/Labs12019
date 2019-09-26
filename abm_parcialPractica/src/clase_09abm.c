@@ -12,7 +12,8 @@
 #include <stdio_ext.h>
 #include <stdlib.h>
 #include <string.h>
-#include "funciones.h"
+
+#include "abm.h"
 
 #define   LCD 1
 #define   LED 2
@@ -24,6 +25,7 @@ int main(void)
 {
 	ePantalla pantallas[CANT];
     int opcion;
+    int idPantalla=0;
 
     iniciarPantallas(pantallas,CANT,0);
 
@@ -32,36 +34,60 @@ int main(void)
     printf("\n");
     printf("\n");
 	menu();
-	getInt(&opcion,"\n\nIngrese una opcion: ","\nERROR",1,6,3);
+	getInt(&opcion,"\n\nIngrese una opcion: ","\nERROR",1,11,3);
 
 	switch(opcion)
 	{
 	case 1:
-		//altaPantalla
-		altaPantalla(pantallas,CANT,0);
+		printf("\n\t...Alta...");
+		altaPantalla(pantallas,CANT,0,&idPantalla);
 		break;
 	case 2:
 		printf("\n\t...Baja...");
+		bajaPantalla(pantallas,CANT);
 		break;
 	case 3:
+			printf("\n\t...modificacion...");
+			printPantallas(pantallas,CANT,1);
+			break;
+	case 4:
+			printf("\n\t...modificacion...");
+			printPantallas(pantallas,CANT,1);
+			break;
+	case 5:
 		printf("\n\t...Modificacion...");
 		/*5-publicacion
           se lista las pantallas contratadas por cuit
           id pantalla
           */
 		break;
-	case 4:
+	case 6:
 		    /*listarPublicaciones
 		  validar que solo cargue los ids de pantalla q tiene.
 		    alta publicaciones*/
 		    break;
-	case 5:
+	case 7:
 		printf("\n\t....");
 		//facturacion multiplica cant dias por precio x dia
 		//nunca mostrar codigos si descripcion o nombre
 		break;
+	case 8:
+			printf("\n\t....");
+			//facturacion multiplica cant dias por precio x dia
+			//nunca mostrar codigos si descripcion o nombre
+			break;
+	case 9:
+			printf("\n\t....");
+			//facturacion multiplica cant dias por precio x dia
+			//nunca mostrar codigos si descripcion o nombre
+			break;
+	case 10:
+			printf("\n\t....");
+			//facturacion multiplica cant dias por precio x dia
+			//nunca mostrar codigos si descripcion o nombre
+			break;
 	   }
-}while(opcion!=6);
+}while(opcion!=11);
 
 return EXIT_SUCCESS;
 }
