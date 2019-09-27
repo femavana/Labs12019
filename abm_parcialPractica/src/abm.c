@@ -49,8 +49,6 @@ int iniciarPantallas(ePantalla* pantallas, int size, int valor)
  return ret;
 }
 
-
-
 int freeSpacePantalla(ePantalla* pantallas, int size,int valor,int* freePosition)
 {
  int i;
@@ -64,10 +62,6 @@ int freeSpacePantalla(ePantalla* pantallas, int size,int valor,int* freePosition
  	{
  	  ret=0;
  	 *freePosition=i;
- 	}
- 	else
- 	{
- 	 printf("\n\tNo hay mas espacio libre...");
  	}
  }
   }
@@ -85,8 +79,7 @@ char direccion[50];
 
 if(pantallas!= NULL && size > 0 )
 {
-   freeSpacePantalla(pantallas,size,value,&freePosition);
-   if(freePosition!=-1)
+   if(freeSpacePantalla(pantallas,size,value,&freePosition)==0)
    {
 	(*idPantalla)++;
 	getFloat(&dayPrice,"\nIngrese el precio por dia de la pantalla: \n","\nError!!.Ingrese solo numeros",100,1000,2);
@@ -99,7 +92,6 @@ if(pantallas!= NULL && size > 0 )
 	strcpy(pantallas[freePosition].nombre,name);
 	strcpy(pantallas[freePosition].direccion,direccion);
     pantallas[freePosition].isEmpty=FALSE;
-
 		  ret=0;
    }
 	else
@@ -124,7 +116,7 @@ int printPantallas(ePantalla* pantallas,int size,int value)
 			if(pantallas[i].isEmpty==value)
 			{
 		    printf("\n___|ID___|Nombre____|Direccion___|Tipo__|Precio_por_dia__|");
-			printf("%d\t%s\t%s\t%d\t%.2f",pantallas[i].idPantalla,pantallas[i].nombre,pantallas[i].direccion,pantallas[i].tipo,pantallas[i].precioDia);
+			printf("%d %s %s %d %.2f",pantallas[i].idPantalla,pantallas[i].nombre,pantallas[i].direccion,pantallas[i].tipo,pantallas[i].precioDia);
 			}
         }
 		ret=0;
@@ -183,6 +175,35 @@ int bajaPantalla(ePantalla* pantallas, int size)
     return ret;
 }
 
+int modificarPantalla(ePantalla* pantallas, int size)
+{
+    int ret=-1;
+    int posicion;
+    int id;
+    if(pantallas!=NULL && size>0)
+    {
+    	printPantallas(pantallas,CANT,1);
+    	getInt(&id,"\n\nIngrese el ID a modificar: ","\nERROR.",1,size,2);
+
+        if(buscarIDPantalla(pantallas,size,0,id,&posicion)==0)
+        {
+        	//getString(,"Ingrese el nombre de la pantalla: \n","\nError!!",3,20,2);
+            pantallas[posicion].isEmpty=0;
+            pantallas[posicion].idPantalla=0;
+            pantallas[posicion].tipo=0;
+            pantallas[posicion].precioDia=0;
+            strcpy(pantallas[posicion].direccion,"");
+            strcpy(pantallas[posicion].nombre,"");
+            ret=0;
+            printf("\tEl cambio fue exitoso!!");
+        }
+        else
+        {
+        	printf("\nNo existe el ID ingresado");
+        }
+    }
+    return ret;
+}
 /*
 int initPublicidad(ePublicidad publicacion, int size, int valor)
 {

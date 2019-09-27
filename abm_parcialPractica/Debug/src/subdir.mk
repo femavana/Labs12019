@@ -5,17 +5,17 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../src/abm.c \
-../src/clase_09abm.c \
+../src/abm_parcial.c \
 ../src/getInput.c 
 
 OBJS += \
 ./src/abm.o \
-./src/clase_09abm.o \
+./src/abm_parcial.o \
 ./src/getInput.o 
 
 C_DEPS += \
 ./src/abm.d \
-./src/clase_09abm.d \
+./src/abm_parcial.d \
 ./src/getInput.d 
 
 

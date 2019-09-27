@@ -12,9 +12,8 @@
 #include <stdio_ext.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "abm.h"
-
+#include "getInput.h"
 #define   LCD 1
 #define   LED 2
 #define   FALSE 1
@@ -39,16 +38,16 @@ int main(void)
 	switch(opcion)
 	{
 	case 1:
-		printf("\n\t...Alta...");
+		printf("\n\t...Alta de pantalla...\n");
 		altaPantalla(pantallas,CANT,0,&idPantalla);
 		break;
 	case 2:
-		printf("\n\t...Baja...");
-		bajaPantalla(pantallas,CANT);
+		printf("\n\t...Modificar datos de pantalla...\n");
+		modificarPantalla(pantallas,CANT);
 		break;
 	case 3:
-			printf("\n\t...modificacion...");
-			printPantallas(pantallas,CANT,1);
+		    printf("\n\t...Baja de pantalla...");
+		    bajaPantalla(pantallas,CANT);
 			break;
 	case 4:
 			printf("\n\t...modificacion...");

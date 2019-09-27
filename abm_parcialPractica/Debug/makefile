@@ -23,19 +23,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: clase_09abm
+all: abm_parcial
 
 # Tool invocations
-clase_09abm: $(OBJS) $(USER_OBJS)
+abm_parcial: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc  -o "clase_09abm" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc  -o "abm_parcial" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) clase_09abm
+	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) abm_parcial
 	-@echo ' '
 
 .PHONY: all clean dependents

@@ -9,6 +9,7 @@
 #include <stdio_ext.h>
 #include <stdlib.h>
 #include <string.h>
+#include "getInput.h"
 
 int getFloat(float *input,
 			 char* message,
@@ -140,6 +141,7 @@ int getString(char* input,
     int size;
      do{
         	printf("%s",message);
+        	__fpurge (stdin);
         	fgets(bufferStr,sizeof(bufferStr),stdin);
         	size=strlen(bufferStr);
         	if(size>=minSize && size<maxSize)
@@ -153,17 +155,13 @@ int getString(char* input,
 
 //validations
 
-int onlyLetter(char* aux)
+int onlyLetter(char aux)
 {
 int ret=0;
-int i=0;
-while(aux[i]!= '\0')
-{
-if((aux[i] != ' ') && (aux[i] < 'a' || aux[i] > 'z') && (aux[i] < 'A' || aux[i] > 'Z'))
+
+if((aux < 'a' || aux > 'z') && (aux< 'A' || aux > 'Z'))
 {
 	ret=-1;
-	i++;
-}
 }
 return ret;
 }
