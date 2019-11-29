@@ -1,0 +1,7 @@
+D:\Mis Documentos\Practica1-Navarro\Musico\ConsoleApp2\obj\Debug\ConsoleApp2.csproj.CoreCompileInputs.cache
+D:\Mis Documentos\Practica1-Navarro\Musico\ConsoleApp2\bin\Debug\ConsoleApp2.exe.config
+D:\Mis Documentos\Practica1-Navarro\Musico\ConsoleApp2\bin\Debug\ConsoleApp2.exe
+D:\Mis Documentos\Practica1-Navarro\Musico\ConsoleApp2\bin\Debug\ConsoleApp2.pdb
+D:\Mis Documentos\Practica1-Navarro\Musico\ConsoleApp2\obj\Debug\ConsoleApp2.csprojAssemblyReference.cache
+D:\Mis Documentos\Practica1-Navarro\Musico\ConsoleApp2\obj\Debug\ConsoleApp2.exe
+D:\Mis Documentos\Practica1-Navarro\Musico\ConsoleApp2\obj\Debug\ConsoleApp2.pdb

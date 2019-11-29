@@ -1,0 +1,7 @@
+D:\Mis Documentos\Practica1-Navarro\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+D:\Mis Documentos\Practica1-Navarro\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+D:\Mis Documentos\Practica1-Navarro\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+D:\Mis Documentos\Practica1-Navarro\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csprojAssemblyReference.cache
+D:\Mis Documentos\Practica1-Navarro\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
+D:\Mis Documentos\Practica1-Navarro\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+D:\Mis Documentos\Practica1-Navarro\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
